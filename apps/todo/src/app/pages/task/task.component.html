@@ -1,0 +1,46 @@
+<div class="task">
+  <h1>{{task.state}} задача</h1>
+  <button mat-raised-button color="accent">Сохранить</button>
+  <button mat-raised-button color="primary">Редактировать</button>
+  <button mat-raised-button >Отменить изменения</button>
+
+  <form [formGroup]="taskForm">
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Название</mat-label>
+        <input matInput type="text" formControlName="title">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="task-filter">
+        <input #taskDateInput formControlName="date" matInput [matDatepicker]="taskDate" placeholder="Дата" (keydown)="false">
+        <mat-datepicker-toggle matSuffix [for]="taskDate"></mat-datepicker-toggle>
+        <mat-datepicker #taskDate disabled="false"></mat-datepicker>
+        <button mat-button *ngIf="taskDateInput.value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="taskDateInput.value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Категория</mat-label>
+        <button mat-button *ngIf="taskCategory.value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="taskCategory.value='';">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-select formControlName="category" #taskCategory>
+          <mat-option *ngFor="let taskCategory of category | keyvalue" [value]="taskCategory.key">
+            {{taskCategory.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field formControlName="description">
+        <mat-label>Коментарий к задаче</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+      </mat-form-field>
+    </p>
+  </form>
+</div>

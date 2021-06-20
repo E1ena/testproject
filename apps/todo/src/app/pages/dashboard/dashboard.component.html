@@ -1,0 +1,115 @@
+<div class="dashboard">
+
+  <div class="wrapper">
+    <section class="task-wrapper">
+      <div class="add-task">
+      </div>
+
+      <div class="task-list">
+        <div class="task-filter-wrapper">
+          <form [formGroup]="taskFilterForm">
+            <mat-form-field appearance="standard" class="task-filter">
+              <input formControlName="name" matInput type="text" #taskName placeholder="Поиск по названию"
+                     (input)="useFilter({key: 'title', value:taskName.value})">
+              <button mat-button *ngIf="taskName.value" matSuffix mat-icon-button aria-label="Clear"
+                      (click)="taskName.value=''; useFilter({key: 'title', value:taskName.value})">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field class="task-filter">
+              <input #taskDateInput formControlName="date" matInput [matDatepicker]="taskDate" placeholder="Дата"
+                     (dateChange)="useFilter({key: 'date', value: taskDateInput.value})" (keydown)="false">
+              <mat-datepicker-toggle matSuffix [for]="taskDate"></mat-datepicker-toggle>
+              <mat-datepicker #taskDate disabled="false"></mat-datepicker>
+              <button mat-button *ngIf="taskDateInput.value" matSuffix mat-icon-button aria-label="Clear"
+                      (click)="taskDateInput.value=''; useFilter({key: 'date', value: taskDateInput.value});">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field class="task-filter">
+              <mat-label>Статус</mat-label>
+              <button mat-button *ngIf="taskStatus.value" matSuffix mat-icon-button aria-label="Clear"
+                      (click)="taskStatus.value=''; useFilter({key: 'isDone', value: taskStatus.value})">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-select formControlName="status" #taskStatus
+                          (selectionChange)="useFilter({key: 'isDone', value: taskStatus.value})">
+                <mat-option *ngFor="let taskStatus of status | keyvalue" [value]="taskStatus.value">
+                  {{taskStatus.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="task-filter">
+              <mat-label>Категория</mat-label>
+              <button mat-button *ngIf="taskCategory.value" matSuffix mat-icon-button aria-label="Clear"
+                      (click)="taskCategory.value=''; useFilter({key: 'category', value: taskCategory.value})">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-select formControlName="category" #taskCategory
+                          (selectionChange)="useFilter({key: 'category', value: taskCategory.value})">
+                <mat-option *ngFor="let taskCategory of category | keyvalue" [value]="taskCategory.key">
+                  {{taskCategory.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button (click)="clearFilters()">Сбросить</button>
+          </form>
+        </div>
+
+        <h3 class="task-list-title">Показать задачи</h3>
+        <mat-button-toggle-group class="task-list-choose" #shownTasks="matButtonToggleGroup" name="shownTasks"
+                                 aria-label="shownTasks"
+                                 [value]="selectedTasks">
+          <mat-button-toggle *ngFor="let shownTasks of  shownTasksOptions | keyvalue" [value]="shownTasks.key"
+                             (click)="changeTaskSelectionOptions(shownTasks.key)">
+            {{shownTasks.value}}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        <button mat-raised-button color="accent" class="create-task-btn">Создать новую</button>
+
+
+        <div class="task-holder">
+          <div *ngFor="let task of userTasks.tasks">
+            <mat-card class="task-card" [ngClass]="{'is-done': task.isDone}">
+              <button class="task-card-menu" mat-icon-button [matMenuTriggerFor]="menu" aria-label="task menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngIf="!task.isDone" (click)="changeTaskStatus(task.id)">
+                  <mat-icon>check</mat-icon>
+                  <span>Сделано</span>
+                </button>
+                <button mat-menu-item *ngIf="task.isDone" (click)="changeTaskStatus(task.id)">
+                  <mat-icon>refresh</mat-icon>
+                  <span>Вернуть в работу</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>delete_forever</mat-icon>
+                  <span>Удалить</span>
+                </button>
+              </mat-menu>
+              <mat-card-content class="card-detail">
+                <h3 class="card-title">{{task.title}}</h3>
+                <mat-chip>{{getTaskCategory(task.category)}}</mat-chip>
+                <p class="card-description">{{task.date | date:'MMM d, y' }}</p>
+                <p class="card-description">{{task.description}}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="calendar-wrapper">
+      <app-calendar [numberOfTasks]="numberOfTasks"></app-calendar>
+    </section>
+  </div>
+
+</div>
+

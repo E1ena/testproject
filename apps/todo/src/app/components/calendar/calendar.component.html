@@ -1,0 +1,15 @@
+<div class="date-wrapper">
+  <p matTooltip="Перелестнуть календарь" (click)="selectCurrentMonth()" class="date-title mat-title">{{currentDate
+    | date: 'dd MMMM, y'}}</p>
+  <p class="mat-subheading-2">{{currentDate | date: 'w'}} неделя / 53</p>
+  <p class="mat-display-1">{{currentDate | date: 'hh:mm:ss'}}</p>
+  <p class="mat-body-1">Сегодня у вас <span class="mat-body-2">{{numberOfTasks}} задачи</span></p>
+</div>
+<div class="calendar" #calendarTemplate>
+  <button mat-icon-button class="prev" color="primary" aria-label="Назад" (click)="changeMonth('prev')">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <button mat-icon-button class="next" color="primary" aria-label="Вперед" (click)="changeMonth('next')">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>

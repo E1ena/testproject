@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Todo</title>
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  </head>
-  <body>
-    <todo-app-root></todo-app-root>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Tестовое приложение</title>
+  <base href="/" />
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <link rel="preload" href="/assets/fonts/OpenSans-Bold.ttf" as="font" type="font/ttf" crossorigin="">
+  <link rel="preload" href="/assets/fonts/OpenSans-Italic.ttf" as="font" type="font/ttf" crossorigin="">
+  <link rel="preload" href="/assets/fonts/OpenSans-Light.ttf" as="font" type="font/ttf" crossorigin="">
+  <link rel="preload" href="/assets/fonts/OpenSans-Regular.ttf" as="font" type="font/ttf" crossorigin="">
+  <link rel="preload" href="/assets/fonts/OpenSans-SemiBold.ttf" as="font" type="font/ttf" crossorigin="">
+
+  <link rel="preload" href="/assets/img/laptop.jpg" as="image" type="image/jpg" media="only screen and (min-width:992px)">
+
+</head>
+
+<body class="mat-typography">
+  <todo-app-root></todo-app-root>
+</body>
+
 </html>

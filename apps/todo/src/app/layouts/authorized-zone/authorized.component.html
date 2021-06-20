@@ -1,0 +1,58 @@
+<mat-drawer-container class="app">
+  <!-- Menu -->
+  <mat-drawer #sidenav mode="side" opened="true" class="app-sidenav">
+    <a
+      mat-button
+      isIconButton="true"
+      class="app-sidenav-menu-button app-sidenav-menu-link"
+      name="solution-settings"
+      [ngStyle]="isSolutionMenuOpen && {'width' : '240px'}"
+      [routerLink]="['/courses']"
+      routerLinkActive="app-sidenav-menu-link-active"
+    >
+      <mat-icon class="app-sidenav-menu-link-icon" svgIcon="calendar-icon"
+                [ngStyle]="!isSolutionMenuOpen && {'margin' : '0 12px'}"></mat-icon>
+      <span class="app-sidenav-menu-link-title" *ngIf="isSolutionMenuOpen">Планер</span>
+    </a>
+
+    <mat-divider class="divider"></mat-divider>
+
+    <a
+      mat-button
+      isIconButton="true"
+      class="app-sidenav-menu-button app-sidenav-menu-link"
+      name="solution-settings"
+      [ngStyle]="isSolutionMenuOpen && {'width' : '240px'}"
+      [routerLink]="['/messages']"
+      [routerLinkActiveOptions]="{exact:true}"
+      routerLinkActive="app-sidenav-menu-link-active"
+    >
+      <mat-icon class="app-sidenav-menu-link-icon" svgIcon="profile-icon"
+                [ngStyle]="!isSolutionMenuOpen && {'margin' : '0 12px'}"></mat-icon>
+      <span class="app-sidenav-menu-link-title" *ngIf="isSolutionMenuOpen">Профиль</span>
+    </a>
+
+    <button mat-button class="app-sidenav-menu-toggle-button"
+            [ngStyle]="isSolutionMenuOpen && {'width' : '240px', 'padding-left': '0'}" (click)="openMenuSolution()">
+      <mat-icon *ngIf="isSolutionMenuOpen">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>
+          <path fill="none" d="M0 0h24v24H0z"/>
+        </svg>
+      </mat-icon>
+      <span class="app-sidenav-menu-toggle-close" *ngIf="isSolutionMenuOpen">Свернуть меню</span>
+      <mat-icon class="app-sidenav-menu-toggle-open" *ngIf="!isSolutionMenuOpen">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/>
+          <path fill="none" d="M0 0h24v24H0z"/>
+        </svg>
+      </mat-icon>
+    </button>
+  </mat-drawer>
+
+  <!-- Content -->
+  <mat-drawer-content class="app-content"
+                      [ngStyle]="!isSolutionMenuOpen ? {'margin-left' : '80px'} : {'margin-left' : '240px'}">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

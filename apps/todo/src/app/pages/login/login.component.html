@@ -1,0 +1,24 @@
+<div class="login">
+    <h1 class="login-header">С возвращением</h1>
+    <h2 class="login-subtitle">Авторизуйтесь, пожалуйста</h2>
+    <form [formGroup]="loginForm" (submit)="login()">
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label>Логин</mat-label>
+                <input matInput placeholder="Placeholder" formControlName="login">
+            </mat-form-field>
+        </p>
+
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label>Пароль</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </p>
+        <button type="submit" mat-raised-button color="accent">Войти</button>
+        <button type="button" [routerLink]="['/signup']" mat-stroked-button color="primary">Нет аккаунта?</button>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+.signup {
+  &-header {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0;
+  }
+  &-subtitle {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+}

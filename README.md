@@ -1,4 +1,9 @@
 # TodoApp
+CRUD todo приложение 
+Запуск
+nx serve todo
+
+
 
 This project was generated using [Nx](https://nx.dev).
 

@@ -1,0 +1,100 @@
+.app {
+  min-height: 100vh;
+
+  &-content {
+    background: #ffffff;
+    min-height: 100vh;
+  }
+
+  &-sidenav {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    background-color: #ffffff;
+    overflow: hidden;
+
+    &-menu {
+      width: 100%;
+      font-size: 16px;
+      text-align: left;
+
+      &-button {
+        text-align: left;
+      }
+
+      &-link {
+        height: 40px;
+        border-radius: 0;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.6);
+
+        &-active {
+          background-color: #E0F7FA;
+          color: #00838F;
+        }
+
+        &-icon {
+          width: 30px;
+          height: 30px;
+          margin: 0 16px;
+        }
+
+        .divider {
+          margin: 16px;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: #333333;
+        padding: 8px;
+      }
+
+      &-toggle-button {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-transform: uppercase;
+        left: 0;
+        height: 40px;
+        color: rgba(0, 0, 0, 0.6);
+        border-radius: 0;
+        overflow: hidden;
+
+        &:hover {
+          background-color: #E0F7FA;
+        }
+      }
+
+      &toggle-open {
+        margin: 0 12px;
+      }
+
+      &toggle-close {
+        height: 40px;
+        padding-left: 16px;
+        color: rgba(0, 0, 0, 0.38);
+        font-size: 16px;
+        letter-spacing: 0.15px;
+        text-align: center;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+  background-color: transparent;
+}
+
+::ng-deep .mat-drawer:not(.mat-drawer-side) {
+  box-shadow: 0px -3px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+::ng-deep .mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+}
+

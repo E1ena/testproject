@@ -1,0 +1,10 @@
+<div class="unauthorized-zone" [class.isRevert] = "isLoginPage">
+    <div class="gallery">
+      <h1>{{pageTitle}}</h1>
+    </div>
+    <div class="content">
+        <mat-card class="form-wrapper">
+            <router-outlet></router-outlet>
+        </mat-card>
+    </div>
+</div>
